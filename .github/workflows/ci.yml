@@ -16,10 +16,10 @@ jobs:
         with:
           node-version: "12.x"
       - run: npm ci
-        working-directory: ${{ wd }}
+        working-directory: ${{ env.wd }}
       - run: npm run format:check
-        working-directory: ${{ wd }}
+        working-directory: ${{ env.wd }}
       - run: npm test -- --coverage
-        working-directory: ${{ wd }}
+        working-directory: ${{ env.wd }}
         env:
           CI: true
