@@ -65,7 +65,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx surge --project ./build --domain clear-death.surge.sh
       - name: Upload Coverage Reports
-        if: github.event_name == 'pull_request' && github.ref == 'refs/heads/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx codecov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
