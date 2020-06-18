@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      wd: ../my-app
+      wd: ./my-app
     steps:
       - uses: actions/checkout@v2
       - name: Use NodeJS
