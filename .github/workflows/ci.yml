@@ -7,20 +7,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      wd: ../my-app
     steps:
       - uses: actions/checkout@v2
       - name: Use NodeJS
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - run: |
-          cd my-app
-          npm ci
-      - run: |
-          pwd
-          npm run format:check
-      - run: |
-          pwd
-          npm test -- --coverage
+      - run: npm ci
+        working-directory: ${{ wd }}
+      - run: npm run format:check
+        working-directory: ${{ wd }}
+      - run: npm test -- --coverage
+        working-directory: ${{ wd }}
         env:
           CI: true
