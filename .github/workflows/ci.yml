@@ -4,11 +4,13 @@ on:
   pull_request:
     branches: [develop]
 
+defaults:
+  run:
+    working-directory: ./my-app
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      wd: ./my-app
     steps:
       - uses: actions/checkout@v2
       - name: Use NodeJS
@@ -16,10 +18,7 @@ jobs:
         with:
           node-version: "12.x"
       - run: npm ci
-        working-directory: ${{ env.wd }}
       - run: npm run format:check
-        working-directory: ${{ env.wd }}
       - run: npm test -- --coverage
-        working-directory: ${{ env.wd }}
         env:
           CI: true
